@@ -1,6 +1,14 @@
 package routes
 
 import (
-	_ "github.com/DenysBahachuk/Go_MySql_BookManagmentSystem/pkg/controllers"
-	_ "github.com/gorilla/mux"
+	"github.com/DenysBahachuk/Go_MySql_BookManagmentSystem/pkg/controllers"
+	"github.com/gorilla/mux"
 )
+
+var RegisterBookstoreRoutes = func(router *mux.Router) {
+	router.HandleFunc("/book/", controllers.CreateBook).Methods("POST")
+	router.HandleFunc("/book/", controllers.GetBooks).Methods("GET")
+	router.HandleFunc("/book/{bookId}", controllers.GetBook).Methods("GET")
+	router.HandleFunc("/book/{bookId}", controllers.UpdateBook).Methods("PUT")
+	router.HandleFunc("/book/{bookId}", controllers.DeleteBook).Methods("DELETE")
+}
